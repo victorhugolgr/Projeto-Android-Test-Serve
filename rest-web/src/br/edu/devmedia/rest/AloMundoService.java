@@ -10,7 +10,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-@Path("/")
+import br.edu.devmedia.domain.Pessoa;
+
+@Path("/alo")
 public class AloMundoService {
 
 	@GET
@@ -31,5 +33,15 @@ public class AloMundoService {
 	@Consumes(MediaType.TEXT_PLAIN)
 	public String testeParam(@PathParam("msg") String msg) {
 		return "Param = " + msg;
+	}
+	
+	@POST
+	@Path("/json")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Pessoa testJson(){
+		Pessoa p = new Pessoa();
+		p.setNome("Victor");
+		return p;
 	}
 }
