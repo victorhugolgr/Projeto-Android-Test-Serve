@@ -1,6 +1,9 @@
 package br.edu.devmedia.rest;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -11,6 +14,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import br.edu.devmedia.domain.Pessoa;
+import br.edu.devmedia.uitl.Constantes;
 
 @Path("/alo")
 public class AloMundoService {
@@ -37,11 +41,23 @@ public class AloMundoService {
 	
 	@POST
 	@Path("/json")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(Constantes.APPLICATION_JSON_UTF8)
+	@Consumes(Constantes.APPLICATION_JSON_UTF8)
 	public Pessoa testJson(){
 		Pessoa p = new Pessoa();
-		p.setNome("Victor");
+		p.setNome("João");
+		
+		List<Pessoa> filhos = new ArrayList<Pessoa>();
+		
+		for (int i = 1; i <= 5; i++) {
+			Pessoa pessoa = new Pessoa();
+			pessoa.setNome("Filho " + i);
+			
+			filhos.add(pessoa);
+		}
+		
+		p.setFilhos(filhos);
+		
 		return p;
 	}
 }
